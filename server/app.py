@@ -391,7 +391,7 @@ async def aquaint_result(run_id: str):
 
 
 from service.eval_correlation import run_correlation_eval, DATASETS, load_dataset, try_load_embeddings, sweep_convex_combo
-from service.wikisim_wrapper import batch_similarity
+from service.wikisim_wrapper import batch_similarity, wikisim_web_health
 
 
 class CorrelationRequest(BaseModel):
@@ -473,3 +473,12 @@ async def wikisim_similarity(req: SimilarityRequest):
         for (a, b), s in zip(pairs, scores)
     ]
     return {"results": results}
+
+
+@app.get("/api/wikisim/health")
+async def wikisim_health():
+    """Report status of configured WikiSim web endpoints.
+
+    Useful when using the hosted API; returns `ok` and per-URL statuses.
+    """
+    return wikisim_web_health()
