@@ -16,6 +16,27 @@ DATASETS = {
 }
 
 
+# def load_dataset(data_dir: Path, key: str) -> List[Tuple[str, str, float]]:
+#     fname = DATASETS.get(key)
+#     if not fname:
+#         raise ValueError(f"Unknown dataset: {key}")
+#     path = data_dir / fname
+#     rows: List[Tuple[str, str, float]] = []
+#     with open(path, "r", encoding="utf-8") as f:
+#         reader = csv.DictReader(f)
+#         for r in reader:
+#             w1 = r.get("word1") or r.get("w1") or r.get("a")
+#             w2 = r.get("word2") or r.get("w2") or r.get("b")
+#             s = r.get("score") or r.get("human_score") or r.get("gold")
+#             if not (w1 and w2 and s):
+#                 continue
+#             try:
+#                 rows.append((w1.strip(), w2.strip(), float(s)))
+#             except Exception:
+#                 continue
+#     return rows
+
+
 def load_dataset(data_dir: Path, key: str) -> List[Tuple[str, str, float]]:
     fname = DATASETS.get(key)
     if not fname:
@@ -34,7 +55,13 @@ def load_dataset(data_dir: Path, key: str) -> List[Tuple[str, str, float]]:
                 rows.append((w1.strip(), w2.strip(), float(s)))
             except Exception:
                 continue
+
+    # ⚡ FAST MODE: limit dataset size to speed up convex evaluation
+    # Comment this line out when you want the full dataset again
+    rows = rows[:10]
+
     return rows
+
 
 
 def try_load_embeddings() -> Dict[str, object]:

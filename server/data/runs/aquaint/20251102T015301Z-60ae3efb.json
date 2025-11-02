@@ -1,0 +1,39 @@
+{
+  "run_id": "20251102T015301Z-60ae3efb",
+  "target": "plant",
+  "limit": 5,
+  "method": "wikipedia",
+  "processed": 2,
+  "found_sentences": 2,
+  "results": [
+    {
+      "file": "C:\\Users\\aroman24\\Wordsense-Disambiguation-Using-Wikipedia\\server\\data\\aquaint\\news1.txt",
+      "sentence": "The plant species in the region are adapting to drought.",
+      "best": {
+        "title": "Vascular plant",
+        "summary": "Vascular plants (from Latin  vasculum 'duct'), also called tracheophytes (UK: , US: ) or collectively Tracheophyta (; from Ancient Greek  τραχεῖα ἀρτηρία (trakheîa artēría) 'windpipe' and  φυτά (phutá) 'plants'), are plants that have lignified tissues (the xylem) for conducting water and minerals throughout the plant. They also have a specialized non-lignified tissue (the phloem) to conduct products of photosynthesis. The group includes most land plants (c. 300,000 accepted known species) excluding mosses.",
+        "url": "https://en.wikipedia.org/wiki/Vascular_plant",
+        "overlap_count": 1,
+        "overlaps": [
+          "species"
+        ]
+      },
+      "candidates_count": 8
+    },
+    {
+      "file": "C:\\Users\\aroman24\\Wordsense-Disambiguation-Using-Wikipedia\\server\\data\\aquaint\\news2.txt",
+      "sentence": "The new power plant was built near the river to produce renewable energy.",
+      "best": {
+        "title": "Plant",
+        "summary": "Plants are the eukaryotes that comprise the kingdom Plantae; they are predominantly photosynthetic. This means that they obtain their energy from sunlight, using chloroplasts derived from endosymbiosis with cyanobacteria to produce sugars from carbon dioxide and water, using the green pigment chlorophyll. Exceptions are parasitic plants that have lost the genes for chlorophyll and photosynthesis, and obtain their energy from other plants or fungi.",
+        "url": "https://en.wikipedia.org/wiki/Plant",
+        "overlap_count": 2,
+        "overlaps": [
+          "energy",
+          "produce"
+        ]
+      },
+      "candidates_count": 8
+    }
+  ]
+}
