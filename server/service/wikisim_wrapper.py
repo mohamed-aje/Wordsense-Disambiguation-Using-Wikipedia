@@ -1,7 +1,9 @@
 from typing import List, Tuple, Optional, Dict
 import os
+import subprocess
+import json
 import re
-
+print("[DEBUG] WIKISIM_CMD =", os.environ.get("WIKISIM_CMD"))
 try:
     import requests 
 except Exception:
@@ -89,8 +91,39 @@ def wikisim_web_health() -> Dict[str, object]:
     return result
 
 
+
+
 def batch_similarity(pairs: List[Tuple[str, str]]) -> List[Optional[float]]:
+    """Compute similarity using either WikiSim CLI (preferred) or web API."""
     scores: List[Optional[float]] = []
+    wikisim_cmd = os.environ.get("WIKISIM_CMD")
+
+    print("[DEBUG] batch_similarity: using WIKISIM_CMD =", wikisim_cmd)
+    if not wikisim_cmd:
+        # fallback: web version
+        for a, b in pairs:
+            scores.append(similarity_word_pair(a, b))
+        return scores
+
     for a, b in pairs:
-        scores.append(similarity_word_pair(a, b))
+        try:
+            # Run the CLI command
+            cmd = f'{wikisim_cmd} "{a}" "{b}"'
+            print("[DEBUG] Running:", cmd)
+            result = subprocess.run(
+                cmd, shell=True, capture_output=True, text=True, timeout=10
+            )
+            output = (result.stdout or "").strip()
+            # Try to parse float from CLI output
+            m = re.search(r"[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?", output)
+            if m:
+                scores.append(float(m.group(0)))
+            else:
+                scores.append(None)
+        except subprocess.TimeoutExpired:
+            print(f"[WARN] WikiSim timeout for {a}, {b}")
+            scores.append(None)
+        except Exception as e:
+            print(f"[ERROR] WikiSim failed for {a}, {b}: {e}")
+            scores.append(None)
     return scores

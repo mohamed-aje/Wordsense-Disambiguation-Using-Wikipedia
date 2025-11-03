@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 
-const DEFAULT_SENTENCE = "This plant requires watering every morning";
-const DEFAULT_TARGET = "plant";
+const DEFAULT_SENTENCE = "He deposited money in the bank";
+const DEFAULT_TARGET = "bank";
 
 function App() {
   const [sentence, setSentence] = useState(DEFAULT_SENTENCE);

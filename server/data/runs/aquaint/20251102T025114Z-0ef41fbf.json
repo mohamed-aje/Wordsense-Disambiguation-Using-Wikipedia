@@ -1,0 +1,49 @@
+{
+  "run_id": "20251102T025114Z-0ef41fbf",
+  "target": "plant",
+  "limit": 50,
+  "method": "wordnet",
+  "processed": 2,
+  "found_sentences": 2,
+  "results": [
+    {
+      "file": "C:\\Users\\aroman24\\Wordsense-Disambiguation-Using-Wikipedia\\server\\data\\aquaint\\news1.txt",
+      "sentence": "The plant species in the region are adapting to drought.",
+      "best": {
+        "synset": "plant.n.04",
+        "definition": "something planted secretly for discovery by another",
+        "examples": [
+          "the police used a plant to trick the thieves",
+          "he claimed that the evidence against him was a plant"
+        ],
+        "lemma_names": [
+          "plant"
+        ],
+        "overlap_count": 0,
+        "overlaps": []
+      },
+      "candidates_count": 10
+    },
+    {
+      "file": "C:\\Users\\aroman24\\Wordsense-Disambiguation-Using-Wikipedia\\server\\data\\aquaint\\news2.txt",
+      "sentence": "The new power plant was built near the river to produce renewable energy.",
+      "best": {
+        "synset": "plant.n.01",
+        "definition": "buildings for carrying on industrial labor",
+        "examples": [
+          "they built a large plant to manufacture automobiles"
+        ],
+        "lemma_names": [
+          "plant",
+          "works",
+          "industrial_plant"
+        ],
+        "overlap_count": 1,
+        "overlaps": [
+          "built"
+        ]
+      },
+      "candidates_count": 10
+    }
+  ]
+}
